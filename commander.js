@@ -61,5 +61,5 @@ program
   .command("complete <_id>")
   .alias("c")
   .description("Mark todo completed")
-  .action(_id => completeTodo());
+  .action(_id => completeTodo(_id));
 program.parse(process.argv);

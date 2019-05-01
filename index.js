@@ -64,21 +64,11 @@ const getAllTodos = () => {
 };
 
 const completeTodo = _id => {
-  Todo.find({ _id })
+  Todo.updateOne({ _id }, { complete: true }, { new: true })
     .then(todo => {
-      if (!todo) {
-        return "Todo does not exist";
-      }
-      if (!todo.complete) {
-        todo.complete = true;
-        Todo.updateOne({ _id }, todo)
-          .then(todo => {
-            console.info("Todo completed successfully");
-            console.info(todo);
-            mongoose.connection.close();
-          })
-          .catch(err => console.info(err));
-      }
+      console.info("Todo completed successfully");
+      console.info(todo);
+      mongoose.connection.close();
     })
     .catch(err => console.info(err));
 };
